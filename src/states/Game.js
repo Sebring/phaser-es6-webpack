@@ -12,23 +12,23 @@ export default class extends Phaser.State {
       [ {width: 60, height: 30, x: 200},
         {width: 60, height: 30, x: 400}],
 
-      [ {width: 40, height: 30, x: 250},
-        {width: 70, height: 25, x: 450},
-        {width: 30, height: 20, x: 100}],
+      [ {width: 40, height: 30, x: 300},
+        {width: 70, height: 25, x: 100},
+        {width: 30, height: 20, x: 450}],
 
-      [ {width: 10, height: 35, x: 150},
+      [ {width: 10, height: 30, x: 150},
         {width: 10, height: 35, x: 300},
-        {width: 10, height: 35, x: 550}],
+        {width: 10, height: 40, x: 500}],
 
-      [ {width: 80, height: 10, x: 280},
-        {width: 60, height: 10, x: 50}],
+      [ {width: 40, height: 10, x: 450},
+        {width: 80, height: 10, x: 280},
+        {width: 120, height: 10, x: 60}],
 
       [ {width: 10, height: 30, x: 150},
         {width: 10, height: 30, x: 190},
         {width: 40, height: 20, x: 170},
-        {width: 70, height: 10, x: 350},
-        {width: 30, height: 20, x: 350},
-        {width: 20, height: 30, x: 350},
+        {width: 90, height: 10, x: 350},
+        {width: 50, height: 20, x: 350},
         {width: 10, height: 40, x: 350}]
     ]
   }
