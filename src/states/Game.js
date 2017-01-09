@@ -7,6 +7,30 @@ import {gameSettings} from '../gameSettings'
 export default class extends Phaser.State {
   init () {
     this.settings = gameSettings()
+    
+    this.gameLevels = [
+      [ {width: 60, height: 30, x: 200},
+        {width: 60, height: 30, x: 400}],
+
+      [ {width: 40, height: 30, x: 250},
+        {width: 70, height: 25, x: 450},
+        {width: 30, height: 20, x: 100}],
+
+      [ {width: 10, height: 35, x: 150},
+        {width: 10, height: 35, x: 300},
+        {width: 10, height: 35, x: 550}],
+
+      [ {width: 80, height: 10, x: 280},
+        {width: 60, height: 10, x: 50}],
+
+      [ {width: 10, height: 30, x: 150},
+        {width: 10, height: 30, x: 190},
+        {width: 40, height: 20, x: 170},
+        {width: 70, height: 10, x: 350},
+        {width: 30, height: 20, x: 350},
+        {width: 20, height: 30, x: 350},
+        {width: 10, height: 40, x: 350}]
+    ]
   }
 
   preload () {}
@@ -14,6 +38,9 @@ export default class extends Phaser.State {
   create () {
     // group for ground
     this.groundGroup = game.add.group()
+    
+    // group for obstacles
+    this.spikeGroup = game.add.group()
 
     this.levelFloor = 0
 
@@ -61,6 +88,19 @@ export default class extends Phaser.State {
        floor.body.immovable = true
        // adding the floor to ground group
        this.groundGroup.add(floor)
+
+      // add obstacles
+      //console.log(`i : ${i} `)
+      for (let j=0, N=this.gameLevels[i].length; j<N; j++) { 
+        //console.log(`j : ${j} `)
+        // create spike using tile and position from settings and gameLevels
+        let level = this.gameLevels[i][j]
+        let spike = game.add.tileSprite(this.settings.floorX + level.x, this.settings.floorY[i], level.width, level.height, 'tile')
+        spike.anchor.set(0.5, 1)
+        game.physics.enable(spike, Phaser.Physics.ARCADE)
+        spike.body.immovable = true
+        this.spikeGroup.add(spike)
+      }
     }
   }
 
@@ -78,6 +118,12 @@ export default class extends Phaser.State {
     if(this.hero.body.touching.down) {
       this.hero.canJump = true
     }
+
+    // check for spike collision
+    game.physics.arcade.overlap(this.hero, this.spikeGroup, function() {
+      // restart
+      game.state.start("Game")
+    }, null, this)
 
     // if the hero leaves the floor to the right or to the left...
     if((this.hero.x > this.settings.floorX + this.settings.floorWidth && this.levelFloor % 2 == 0) || (this.hero.x < this.settings.floorX && this.levelFloor % 2 == 1)) {
