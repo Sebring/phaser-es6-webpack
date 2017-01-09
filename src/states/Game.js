@@ -55,6 +55,16 @@ export default class extends Phaser.State {
 
     this.createFloors();
 
+    this.emitter = game.add.emitter(0, 0, 30)
+    this.emitter.makeParticles('mushroom')
+    this.emitter.gravity = 400
+
+    this.emitter.maxParticleScale = 0.1
+    this.emitter.minParticleScale = 0.05
+    
+    //this.emitter.maxParticleSpeed.set(200,200)
+    //this.emitter.minParticleSpeed.set(-200,-200)
+
     // waiting for player input, then call squareJump function
     game.input.onDown.add(this.heroJump, this)
     game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR).onDown.add(this.heroJump, this)
@@ -121,8 +131,22 @@ export default class extends Phaser.State {
 
     // check for spike collision
     game.physics.arcade.overlap(this.hero, this.spikeGroup, function() {
+      
+      //place emitter on hero
+      this.emitter.x = this.hero.x
+      this.emitter.y = this.hero.y
+      
+      // emit particles
+      this.emitter.start(true, 1000, null, 10)
+
+      /*  we can no longer restart game by restart state, 
+          as it would reset the emitter particles
       // restart
       game.state.start("Game")
+      */
+
+      // reset player position
+      this.restartLevel()
     }, null, this)
 
     // if the hero leaves the floor to the right or to the left...
@@ -133,21 +157,25 @@ export default class extends Phaser.State {
 
       // increase floor level or reset
       this.levelFloor = ((this.levelFloor +1) % this.settings.floorY.length)
-
-      // adjusting hero speed according to floor number: from left to right on even floors, from right to left on odd floors
-      this.hero.body.velocity.x = (this.levelFloor % 2 == 0) ? this.settings.squareSpeed : -this.settings.squareSpeed
-
-      // enable jump
-      this.hero.canJump = true
-
-      // update hero
-      this.hero.y = this.settings.floorY[this.levelFloor] - this.settings.squareSize / 2
-      this.hero.x = (this.levelFloor % 2 == 0) ? this.settings.floorX : this.settings.floorX + this.settings.floorWidth
-      // stopping the jump tween if running
-      if(this.jumpTween && this.jumpTween.isRunning){
-        this.jumpTween.stop();
-        this.hero.angle = 0;
-      }
+      
+      this.restartLevel()
     }
+  }
+
+  restartLevel() {
+    // adjusting hero speed according to floor number: from left to right on even floors, from right to left on odd floors
+    this.hero.body.velocity.x = (this.levelFloor % 2 == 0) ? this.settings.squareSpeed : -this.settings.squareSpeed
+
+    // enable jump
+    this.hero.canJump = true
+
+    // update hero
+    this.hero.y = this.settings.floorY[this.levelFloor] - this.settings.squareSize / 2
+    this.hero.x = (this.levelFloor % 2 == 0) ? this.settings.floorX : this.settings.floorX + this.settings.floorWidth
+    // stopping the jump tween if running
+    if(this.jumpTween && this.jumpTween.isRunning){
+      this.jumpTween.stop();
+      this.hero.angle = 0;
+    } 
   }
 }
