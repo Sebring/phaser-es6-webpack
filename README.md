@@ -9,11 +9,11 @@
 This is a clone of [phaser-es-webpack](http://github.com/lean/phaser-es6-webpack) but with the tutorial [Create a HTML5 game like Space is Key using Phaser, tweens and ARCADE physics](http://www.emanueleferonato.com/2016/12/09/create-a-html5-game-like-space-is-key-using-phaser-tweens-and-arcade-physics/) applied. Each part of the tutorials are pushed on a separate branch so reading the changesets of paralell to the tutorial should make a lot of sense.
 
 ## Roadmap
-- [x] [Part 1](http://www.emanueleferonato.com/2016/12/09/create-a-html5-game-like-space-is-key-using-phaser-tweens-and-arcade-physics/) : pushed to part-1 and merged to master.
-- [ ] [Part 2](http://www.emanueleferonato.com/2016/12/14/create-a-html5-game-like-space-is-key-using-phaser-tweens-and-arcade-physics-step-2-adding-spikes/) : todo
-- [ ] [Part 3](http://www.emanueleferonato.com/2016/12/16/create-a-html5-game-like-space-is-key-using-phaser-tweens-and-arcade-physics-step-3-adding-particles/) : todo
-- [ ] [Part 4]() : todo
-- [ ] [Part 5]() : todo
+- [x] [Part 1](http://www.emanueleferonato.com/2016/12/09/create-a-html5-game-like-space-is-key-using-phaser-tweens-and-arcade-physics/) : pushed to part-1 and merged to master. [See diff](https://github.com/Sebring/phaser-es6-webpack-space-is-key/commit/0b3fd58d3cba046d362b65ac8f89fb9f9d2d7a06)
+- [x] [Part 2](http://www.emanueleferonato.com/2016/12/14/create-a-html5-game-like-space-is-key-using-phaser-tweens-and-arcade-physics-step-2-adding-spikes/) : pushed to part-2 and merged to master. [See diff](https://github.com/Sebring/phaser-es6-webpack-space-is-key/commit/b7c431c731974cfa2f8a0a2617daf019f46d049a#diff-299843a0151abe4bcb0f3357e5c61569)
+- [x] [Part 3](http://www.emanueleferonato.com/2016/12/16/create-a-html5-game-like-space-is-key-using-phaser-tweens-and-arcade-physics-step-3-adding-particles/) : pushed to part-3 and merged to master. [See diff](https://github.com/Sebring/phaser-es6-webpack-space-is-key/commit/9fb0a74f002469d711aa8b447c160162aece57b9#diff-299843a0151abe4bcb0f3357e5c61569)
+- [ ] [Part 4](http://www.emanueleferonato.com/2016/12/22/create-a-html5-game-like-space-is-key-using-phaser-tweens-and-arcade-physics-step-4-adding-background-and-colors/) : todo
+- [ ] Tweaking : todo
 
 ## Features
 - ESLINT with JavaScript Standard Style configuration
